@@ -6,7 +6,23 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String args[]) throws IOException {
-        solve();
+        newsolve();
+    }
+    public static void newsolve() throws IOException {
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        int n=Integer.parseInt(br.readLine());
+        int[] nlist=new int[10001];
+        for(int j=0;j<n;j++){
+            nlist[Integer.parseInt(br.readLine())]++;
+        }
+        for(int j=1;j<=10000;j++){
+            while(nlist[j]!=0){
+                sb.append(j+"\n");
+                nlist[j]--;
+            }
+        }
+        System.out.println(sb);
     }
     public static void solve() throws IOException {
         BufferedReader br=new BufferedReader(new InputStreamReader(System.in));

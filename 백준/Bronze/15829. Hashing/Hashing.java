@@ -10,22 +10,20 @@ public class Main {
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             int L = Integer.parseInt(br.readLine());
             String input = br.readLine();
-            int sum = 0;
+            Long sum = 0L;
+            Long multiplier = 1L;
             for (int i = 0; i < L; i++) {
                 int ch=input.charAt(i)-'a'+1;
-                sum+=ch*multiply(i);
+                sum+=ch*multiplier;
+                sum=sum%1234567891L;
+                multiplier=(multiplier*31L)%1234567891L;
+
             }
-            System.out.println(sum%1234567891);
+            System.out.println(sum);
         }
         catch (Exception e){
             System.out.println(e);
         }
     }
-    public static int multiply(int a){
-        int num=1;
-        for (int i = 0; i < a; i++) {
-            num*=31;
-        }
-        return num;
-    }
+
 }

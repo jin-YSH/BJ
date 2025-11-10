@@ -17,15 +17,12 @@ public class Main {
         int M = Integer.parseInt(st.nextToken());
         char[][] Map=new char[N][M];
         boolean[][] visited=new boolean[N][M];
-        Queue<Dot> queue=new LinkedList<>();
+        Queue<int[]> queue=new LinkedList<>();
         int count=0;
 
         int startx=0,starty=0;
         for(int i=0;i<N;i++){
             Map[i]=br.readLine().toCharArray();
-
-        }
-        for(int i=0;i<N;i++){
             for(int j=0;j<M;j++){
                 if(Map[i][j]=='I'){
                     starty=i;
@@ -33,20 +30,24 @@ public class Main {
                 }
             }
         }
+
         visited[starty][startx]=true;
-        queue.offer(new Dot(startx,starty));
+        queue.offer(new int[]{startx,starty});
+        int[] dx={0,1,0,-1};
+        int[] dy={1,0,-1,0};
+        
         while(!queue.isEmpty()){
-            Dot curr=queue.poll();
-            int currx=curr.x;
-            int curry=curr.y;
-            Dot[] nextlist= {new Dot(currx+1,curry),new Dot(currx,curry+1),new Dot(currx,curry-1),new Dot(currx-1,curry)};
-            for(Dot next:nextlist){
-                if(next.x>=0&&next.x<M&&next.y>=0&&next.y<N&&!visited[next.y][next.x] &&Map[next.y][next.x]!='X'){
-                    visited[next.y][next.x]=true;
-                    if(Map[next.y][next.x]=='P'){
+            int[] curr=queue.poll();
+
+            for(int i=0;i<4;i++){
+                int nx=curr[0]+dx[i];
+                int ny=curr[1]+dy[i];
+                if(nx>=0&&nx<M&&ny>=0&&ny<N&&!visited[ny][nx] &&Map[ny][nx]!='X'){
+                    visited[ny][nx]=true;
+                    if(Map[ny][nx]=='P'){
                         count++;
                     }
-                    queue.offer(next);
+                    queue.offer(new int[]{nx,ny});
                 }
             }
 
@@ -55,12 +56,5 @@ public class Main {
 
 
     }
-    public static class Dot{
-        int x;
-        int y;
-        public Dot(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-    }
+
 }

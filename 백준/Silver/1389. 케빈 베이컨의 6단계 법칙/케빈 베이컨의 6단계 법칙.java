@@ -6,7 +6,50 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws IOException{
-        solve();
+        newsolve();
+    }
+    public static void newsolve() throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st=new StringTokenizer(br.readLine());
+        int N=Integer.parseInt(st.nextToken());
+        int M=Integer.parseInt(st.nextToken());
+        int[][] distance=new int[N+1][N+1];
+        for (int i = 1; i <= N; i++) {
+
+            Arrays.fill(distance[i],N*2);
+            distance[i][i]=0;
+
+        }
+        for (int i = 1; i <= M; i++) {
+            st=new StringTokenizer(br.readLine());
+            int x=Integer.parseInt(st.nextToken());
+            int y=Integer.parseInt(st.nextToken());
+            distance[x][y]=1;
+            distance[y][x]=1;
+        }
+        for(int k=1;k<=N;k++){
+            for(int i=1;i<=N;i++){
+                for(int j=1;j<=N;j++){
+                    if(distance[i][j]>distance[i][k]+distance[k][j]){
+                        distance[i][j]=distance[i][k]+distance[k][j];
+                    }
+                }
+            }
+        }
+        int min=Integer.MAX_VALUE;
+        int address=-1;
+        for(int i=1;i<=N;i++){
+            int sum=0;
+            for(int j=1;j<=N;j++){
+                sum+=distance[i][j];
+            }
+            if(sum<min){
+                min=sum;
+                address=i;
+            }
+        }
+        System.out.println(address);
+
     }
     public static void solve() throws IOException
     {

@@ -55,9 +55,11 @@ public class Main {
                     }
                 }
             }
-            if (bag < 0) 
-                continue;
-            
+            if (bag < 0) {
+                System.out.println(mintime+" "+maxh);
+                return;
+            }
+
             if(nowtime<=mintime){
                 mintime = nowtime;
                 maxh=i;

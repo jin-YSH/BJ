@@ -23,6 +23,7 @@ public class Main {
             Arrays.fill(before,-1);
             Queue<Integer> q=new LinkedList<>();
             q.add(A);
+            visited[A]=true;
             while(!q.isEmpty()){
                 int temp=q.poll();
                 if(temp==B){

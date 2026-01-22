@@ -7,17 +7,17 @@ public class Main {
 	public static void main(String[] args) throws Exception{
 		BufferedReader br= new BufferedReader(new InputStreamReader(System.in));
 		int n=Integer.parseInt(br.readLine());
+		StringBuilder sb=new StringBuilder();
 		for(int y=0;y<n;y++) {
 			for(int x=0;x<n-y-1;x++) {
-				System.out.print(" ");
+				sb.append(" ");
 			}
 			for(int x=0;x<y*2+1;x++) {
-				System.out.print("*");
+				sb.append("*");
 			}
-			
-				System.out.print(" ");
-			
-			System.out.println();
+			sb.append(" ");
+			sb.append("\n");
 		}
+		System.out.println(sb);
 	}
 }

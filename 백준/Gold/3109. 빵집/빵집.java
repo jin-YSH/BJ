@@ -1,4 +1,5 @@
 
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -6,7 +7,7 @@ import java.io.InputStreamReader;
 public class Main {
 	static int R;
 	static int C;
-	static String[][] map;
+	static char[][] map;
 	static boolean[][] visited;
 	static int answer=0;
 	static boolean debug=false;
@@ -15,12 +16,13 @@ public class Main {
 		String[] input=br.readLine().split(" ");
 		R=Integer.parseInt(input[0]);
 		C=Integer.parseInt(input[1]);
-		map=new String[R][C];
+		map=new char[R][C];
 		visited=new boolean[R][C];
+		char[] cinput;
 		for(int r=0;r<R;r++) {
-			input=br.readLine().split("");
+			cinput=br.readLine().toCharArray(); 
 			for(int c=0;c<C;c++) {
-				map[r][c]=input[c];
+				map[r][c]=cinput[c];
 			}
 		}
 		
@@ -56,7 +58,7 @@ public class Main {
 			int nc=c+1;
 			int nr=r+i;
 			if(nc>=0&&nc<C&&nr>=0&&nr<R) {
-				if(!visited[nr][nc]&&map[r][c].equals(".")) {
+				if(!visited[nr][nc]&&map[nr][nc]=='.') {
 					visited[nr][nc]=true;
 					if(dfs(nr,nc)==true) {
 						return true;

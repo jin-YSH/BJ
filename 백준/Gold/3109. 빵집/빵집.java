@@ -28,7 +28,7 @@ public class Main {
 		
 		if(debug==true)
 			printMap();
-		visited[0][0]=true;
+
 		for(int i=0;i<R;i++) {
 			if(dfs(i,0)) {
 				answer++;
@@ -60,7 +60,7 @@ public class Main {
 			if(nc>=0&&nc<C&&nr>=0&&nr<R) {
 				if(!visited[nr][nc]&&map[nr][nc]=='.') {
 					visited[nr][nc]=true;
-					if(dfs(nr,nc)==true) {
+					if(dfs(nr,nc)) {
 						return true;
 					}
 					
